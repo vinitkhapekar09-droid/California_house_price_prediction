@@ -1,3 +1,96 @@
-<h1>
-    Hello World
-</h1>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>California House Price Prediction</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Hind:300" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet" type="text/css">
+
+  <style>
+    body {
+      background: #f2f2f2;
+      font-family: Arimo, sans-serif;
+    }
+
+    .login {
+      width: 400px;
+      margin: 60px auto;
+      padding: 30px;
+      background: #ffffff;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .login h1 {
+      margin-bottom: 25px;
+      font-family: Pacifico;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #007BFF;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="login">
+    <h1>California House Price Prediction</h1>
+
+    <!-- Input form -->
+    <form action="{{ url_for('predict') }}" method="post">
+
+      <input type="text" name="MedInc" placeholder="Median Income" required />
+      <input type="text" name="HouseAge" placeholder="House Age" required />
+      <input type="text" name="AveRooms" placeholder="Average Rooms" required />
+      <input type="text" name="AveBedrms" placeholder="Average Bedrooms" required />
+      <input type="text" name="Population" placeholder="Population" required />
+      <input type="text" name="AveOccup" placeholder="Average Occupancy" required />
+      <input type="text" name="Latitude" placeholder="Latitude" required />
+      <input type="text" name="Longitude" placeholder="Longitude" required />
+
+      <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction_text %}
+      <div class="result">
+        {{ prediction_text }}
+      </div>
+    {% endif %}
+  </div>
+
+</body>
+</html>
